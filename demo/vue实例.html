@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title v-text="title"></title>
+    <link rel="stylesheet" href="/vuejs/bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/vuejs/bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>
+    <style>
+        body {
+            padding-top: 40px;
+            padding-bottom: 40px;
+            background-color: #eee;
+        }
+
+        .form-signin {
+            max-width: 330px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+            margin-bottom: 10px;
+        }
+        .form-signin .checkbox {
+            font-weight: normal;
+        }
+        .form-signin .form-control {
+            position: relative;
+            height: auto;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        #button{
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <form id="form" class="form-signin">
+        <h2 class="form-signin-heading">请输入title</h2>
+        <label for="inputTitle" class="sr-only">{{message}}</label>
+        <input v-model="message" type="text" id="inputTitle" class="form-control" placeholder="请输入title" required autofocus>
+        <!--<label for="inputPassword" class="sr-only">Password</label>-->
+        <!--<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>-->
+        <!--<div class="checkbox">-->
+            <!--<label>-->
+                <!--<input type="checkbox" value="remember-me"> Remember me-->
+            <!--</label>-->
+        <!--</div>-->
+        <button @click="setTitle($event)" id="button" class="btn btn-lg btn-primary btn-block" type="button">点击更新</button>
+    </form>
+
+</div> <!-- /container -->
+<script src="/vuejs/bower_components/vue/dist/vue.js"></script>
+<script src="/vuejs/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/vuejs/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+    var vm_title = new Vue({
+        el: 'title',
+        data:{
+            title:'vue实例'
+        },
+        methods:{
+            setTitle: function (input) {
+                this.title = input;
+
+            }
+        },
+        watch:{
+            title: {
+                handler: function () {
+                    console.dir(arguments);
+//                    alert('title设置成功');
+                },
+                deep:true
+            }
+        }
+    });
+
+
+    var vm_button = new Vue({
+        el: '#button',
+        methods:{
+            setTitle: function () {
+                vm_title.setTitle(vm_form.message);
+            }
+        }
+    });
+
+    var vm_form = new Vue({
+        el: '#form',
+        data:{
+            message: ''
+        }
+    });
+
+</script>
+
+</body>
+</html>
