@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title v-text="title"></title>
-    <script src="../src/bundle.js"></script>
+    <link rel="stylesheet" href="../src/main.css"/>
     <!--<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css"/>-->
     <!--<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css"/>-->
     <style>
@@ -73,47 +73,6 @@
 <!--<script src="../bower_components/vue/dist/vue.js"></script>-->
 <!--<script src="../bower_components/jquery/dist/jquery.min.js"></script>-->
 <!--<script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
-<script>
-    var vm_title = new Vue({
-        el: 'title',
-        data:{
-            title:'vue实例'
-        },
-        methods:{
-            setTitle: function (input) {
-                this.title = input;
-
-            }
-        },
-        watch:{
-            title: {
-                handler: function () {
-                    console.dir(arguments);
-//                    alert('title设置成功');
-                },
-                deep:true
-            }
-        }
-    });
-
-
-    var vm_button = new Vue({
-        el: '#button',
-        methods:{
-            setTitle: function () {
-                vm_title.setTitle(vm_form.message);
-            }
-        }
-    });
-
-    var vm_form = new Vue({
-        el: '#form',
-        data:{
-            message: ''
-        }
-    });
-
-</script>
-
+<script src="../src/main.js"></script>
 </body>
 </html>
