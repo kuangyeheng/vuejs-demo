@@ -1,10 +1,19 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var fs = require('fs');
+var fileList = fs.readdirSync('./js');
+fileList = fileList.map(function (item, i) {
+    var returnVal='';
+    item.replace(/demo\d+/, function (item) {
+        returnVal = './js/'+item;
+    });
+    return returnVal==''?void(0):returnVal;
+});
 
 module.exports = {
     entry: {
         public: './public',
-        main: './main'
+        main: fileList
     },
     output:{
         path: './src',

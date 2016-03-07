@@ -42,6 +42,14 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(1);
+	module.exports = __webpack_require__(2);
+
+
+/***/ },
+/* 1 */
 /***/ function(module, exports) {
 
 	var vm_title = new Vue({
@@ -84,6 +92,12 @@
 	});
 
 
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	
 
 /***/ }
 /******/ ]);
