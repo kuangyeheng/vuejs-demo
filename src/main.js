@@ -52,33 +52,33 @@
 /* 1 */
 /***/ function(module, exports) {
 
+	'use strict';
+
 	var vm_title = new Vue({
 	    el: 'title',
-	    data:{
-	        title:'vue实例'
+	    data: {
+	        title: 'vue实例'
 	    },
-	    methods:{
-	        setTitle: function (input) {
+	    methods: {
+	        setTitle: function setTitle(input) {
 	            this.title = input;
-
 	        }
 	    },
-	    watch:{
+	    watch: {
 	        title: {
-	            handler: function () {
+	            handler: function handler() {
 	                console.dir(arguments);
-	//                    alert('title设置成功');
+	                //                    alert('title设置成功');
 	            },
-	            deep:true
+	            deep: true
 	        }
 	    }
 	});
 
-
 	var vm_button = new Vue({
 	    el: '#button',
-	    methods:{
-	        setTitle: function () {
+	    methods: {
+	        setTitle: function setTitle() {
 	            vm_title.setTitle(vm_form.message);
 	        }
 	    }
@@ -86,18 +86,42 @@
 
 	var vm_form = new Vue({
 	    el: '#form',
-	    data:{
+	    data: {
 	        message: ''
 	    }
 	});
-
-
 
 /***/ },
 /* 2 */
 /***/ function(module, exports) {
 
-	
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	var Person = function () {
+	    function Person(name, age) {
+	        _classCallCheck(this, Person);
+
+	        this.name = name;
+	        this.age = age;
+	    }
+
+	    _createClass(Person, [{
+	        key: 'love',
+	        value: function love() {
+	            alert('I fall in love with ' + this.name);
+	        }
+	    }]);
+
+	    return Person;
+	}();
+
+	var me = new Person('邝业亨', 25);
+
+	me.love();
 
 /***/ }
 /******/ ]);
