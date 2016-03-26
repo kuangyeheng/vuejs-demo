@@ -1,23 +1,27 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var fs = require('fs');
-var fileList = fs.readdirSync('./js');
+// var path = require('path');
+var fileList = fs.readdirSync('./entryjs');
+var entryArr = [];
 fileList = fileList.map(function (item, i) {
     var returnVal='';
     item.replace(/demo\d+/, function (item) {
-        returnVal = './js/'+item;
+        entryArr.push('./entryjs/'+item);
     });
-    return returnVal==''?void(0):returnVal;
+    return returnVal;
 });
 
+delete fileList;
+// console.dir(entryArr);
+// return;
 module.exports = {
     entry: {
-        public: './public',
-        main: fileList
+        public: './entryjs/public',
+        main: entryArr
     },
     output:{
-        path: './src',
-        filename: '[name].js'
+        filename: '[name].[chunkhash].js'
     },
     module:{
         loaders:[
@@ -29,7 +33,7 @@ module.exports = {
                     presets: [ 'es2015']
                 }
             },
-            {test:/\.css$/,loader:ExtractTextPlugin.extract('style-loader', 'css-loader')},
+            {test:/\.(css|scss)$/,loader:ExtractTextPlugin.extract('style-loader', 'css-loader', 'sass-loader')},
             {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
             {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
@@ -38,11 +42,11 @@ module.exports = {
     },
     resolve: {
         alias:{
-            jQuery:'./bower_components/jquery/dist/jquery.min',
-            Vue:'./bower_components/vue/dist/vue.min',
-            bootstrap: './bower_components/bootstrap/dist/css/bootstrap.min',
-            'bootstrap-theme': './bower_components/bootstrap/dist/css/bootstrap-theme.min',
-            'bootstrap-js': './bower_components/bootstrap/dist/js/bootstrap.min'
+            jQuery: __dirname + '/bower_components/jquery/dist/jquery.min',
+            Vue: __dirname + '/bower_components/vue/dist/vue.min',
+            bootstrap:  __dirname + '/bower_components/bootstrap/dist/css/bootstrap.min',
+            'bootstrap-theme':  __dirname + '/bower_components/bootstrap/dist/css/bootstrap-theme.min',
+            'bootstrap-js':  __dirname + '/bower_components/bootstrap/dist/js/bootstrap.min'
         },
         // you can now require('file') instead of require('file.coffee')
         extensions: ['','.js','.css']
